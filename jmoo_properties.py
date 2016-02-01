@@ -47,7 +47,7 @@ from Problems.XOMO.XOMO_osp2 import XOMO_osp2
 from Problems.Constrained.Type1 import c1_dtlz1,c1_dtlz3
 from Problems.Constrained.Type2 import c2_dtlz2, c2_convex_dtlz2
 from Problems.Constrained.Type3 import c3_dtlz1, c3_dtlz4
-
+from Problems.HPCC.Kmeans.runner import hpcc_kmeans
 
 # JMOO Experimental Definitions
 algorithms = [
@@ -67,97 +67,7 @@ algorithms = [
               ]
 
 problems =[
-    # c1_dtlz1(7, 3),
-    # c1_dtlz1(9, 5),
-    # c1_dtlz1(12, 8),
-    # c1_dtlz1(14, 10),
-    # c1_dtlz1(19, 15),
-
-    # c1_dtlz3(12, 3),
-    # c1_dtlz3(14, 5),
-    # c1_dtlz3(17, 8),
-    # c1_dtlz3(19, 10),
-    # c1_dtlz3(24, 15),
-
-
-    # c2_dtlz2(12, 3),
-    # c2_dtlz2(14, 5),
-    # c2_dtlz2(17, 8),
-    # c2_dtlz2(19, 10),
-    # c2_dtlz2(24, 15),
-    #
-    # c2_convex_dtlz2(12, 3),
-    # c2_convex_dtlz2(14, 5),
-    # c2_convex_dtlz2(17, 8),
-    # c2_convex_dtlz2(19, 10),
-    # c2_convex_dtlz2(24, 15),
-
-
-    # c3_dtlz1(7, 3),
-    # c3_dtlz1(9, 5),
-    # c3_dtlz1(12, 8),
-    # c3_dtlz1(14, 10),
-    # c3_dtlz1(19, 15),
-    #
-    # c3_dtlz4(7, 3),
-    # c3_dtlz4(9, 5),
-    # c3_dtlz4(12, 8),
-    # c3_dtlz4(14, 10),
-    c3_dtlz4(19, 15),
-
-    dtlz7(24, 5)
-
-    # fonseca(3),
-    # zdt1(),
-    #  zdt4(),
-    #  zdt3(),
-    # golinski(), zdt6()
-    # srinivas()
-    # POM3B(),
-    # POM3A(),
-    # POM3C(),
-    # POM3D(),
-    # dtlz1(9, 5),
-    # dtlz2(14, 5),
-    # dtlz3(14, 5),
-    # dtlz4(14, 5),
-    # dtlz1(7, 3),
-    # dtlz2(12, 3),
-    # dtlz3(12, 3),
-    # dtlz4(12, 3),
-    # dtlz1(12, 8),
-    # dtlz2(17, 8),
-    # dtlz3(17, 8),
-    # dtlz4(17, 8),
-    # dtlz1(14, 10),
-    # dtlz2(19, 10),
-    # dtlz3(19, 10),
-    # dtlz4(19, 10),
-    # dtlz1(19, 15),
-    # dtlz2(24, 15),
-    # dtlz3(24, 15),
-    # dtlz4(24, 15)
-    # XOMO_all(),
-    # NRP(50, 5, 5, 20, 120)
-    # FeatureTreeModel("Web_Portal", valid_solutions=True),
-    # FeatureTreeModel("eshop", valid_solutions=True),
-    # FeatureTreeModel("cellphone", valid_solutions=True),
-    # FeatureTreeModel("EIS", valid_solutions=True),
-    # FeatureTreeModel("Web_Portal"),
-    # FeatureTreeModel("eshop"),
-    # FeatureTreeModel("cellphone"),
-    # FeatureTreeModel("EIS"),
-    #MONRP(50, 5, 5, 20, 120)
-    # cpm_apache(),cpm_X264(), cpm_SQL_4553(), cpm_SQL_100(), cpm_LLVM(), cpm_BDBJ(), cpm_BDBC()
-    # cpm_apache_training_reduction(treatment=None),
-    # cpm_X264(treatment=None),
-    # cpm_SQL(treatment=None),
-    # cpm_LLVM(treatment=None),
-    # cpm_BDBJ(treatment=None),
-    # cpm_BDBC(treatment=None)
-
-
-
+    hpcc_kmeans(norows=2)
 ]
 
 build_new_pop = False                                       # Whether or not to rebuild the initial population
