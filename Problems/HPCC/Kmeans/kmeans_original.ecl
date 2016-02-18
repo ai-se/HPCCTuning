@@ -1,23 +1,48 @@
 IMPORT * FROM ML;
-		 
 IMPORT * FROM ML.Cluster;
- 
 IMPORT * FROM ML.Types;
- 
-x2 := DATASET([
-{1, 1, 1}, {1, 2, 5},
-{2, 1, 5}, {2, 2, 7},
-{3, 1, 8}, {3, 2, 1},
-{4, 1, 0}, {4, 2, 0},
-{5, 1, 9}, {5, 2, 3},
-{6, 1, 1}, {6, 2, 4},
-{7, 1, 9}, {7, 2, 4}],NumericField);
- 
-c := DATASET([
-{1, 1, 1}, {1, 2, 5},
-{2, 1, 5}, {2, 2, 7},
-{3, 1, 9}, {3, 2, 4}],NumericField);
- 
-x3 := Kmeans(x2,c);
- 
+
+layout_data := RECORD
+  INTEGER id;
+	DECIMAL a;
+	DECIMAL b;
+	DECIMAL c;
+	DECIMAL d;
+	DECIMAL e;
+	DECIMAL f;
+	DECIMAL g;
+END;
+
+refined_data := RECORD
+	DECIMAL a;
+	DECIMAL b;
+	DECIMAL c;
+	DECIMAL d;
+	DECIMAL e;
+	DECIMAL f;
+	DECIMAL g;
+END;
+
+raw_data := DATASET('~testing', layout_data, csv(separator(',')));
+SET OF INTEGER raw_centroids := [3, 45, 2];
+raw_centroid := raw_data(id IN raw_centroids);
+
+refined_data remove_id(layout_data l) := TRANSFORM
+	SELF.a := l.a;
+	SELF.b := l.b;
+	SELF.c := l.c;
+	SELF.d := l.d;
+	SELF.e := l.e;
+	SELF.f := l.f;
+	SELF.g := l.g;
+END;
+
+clean_data := PROJECT(raw_data, remove_id(LEFT));
+centroid := PROJECT(raw_centroid, remove_id(LEFT));
+
+ML.ToField(clean_data, d);
+ML.ToField(centroid, c);
+
+x3 := Kmeans(d, c);
+
 OUTPUT(x3);
