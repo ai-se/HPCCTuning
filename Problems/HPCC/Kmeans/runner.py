@@ -18,7 +18,7 @@ from os import system
 
 
 # for count in xrange(1, 10):
-#     command = "ecl run kmeans.ecl -I\"C:\ecl-ml-master\"  --target=thor --server=192.168.56.101:8010"
+#     command = "ecl run kmeans_original.ecl -I\"C:\ecl-ml-master\"  --target=thor --server=192.168.56.101:8010"
 #     import subprocess
 #
 #     output = subprocess.check_output(command, shell=True)
@@ -61,7 +61,7 @@ class hpcc_kmeans(jmoo_problem):
         input_string += "<nol>" + str(t_nol) + "</nol>"
         input_string += "</request>\""
 
-        command = "ecl run kmeans.ecl -I\"C:\ecl-ml-master\" --target=thor --server=192.168.56.101:8010"
+        command = "ecl run kmeans.ecl -I\"C:\ecl-ml-master\" " + input_string + "--target=thor --server=192.168.56.101:8010"
 
         print command
 
