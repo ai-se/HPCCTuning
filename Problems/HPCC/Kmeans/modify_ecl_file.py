@@ -10,9 +10,9 @@ def modify_file(centroids, number_of_loops, convergence):
     new_content = content[:14]  # get all the data
     new_content += centroids + "\n"
     new_content += "x3 := Kmeans(x2,c," + str(number_of_loops) + "," +str(convergence) +");\n"
-    new_content += content[20:23]
+    new_content += content[21:23]
 
-    print new_content
+    new_content = "".join(new_content)
     f = open(modified_file_name, "w")
     f.write(new_content)
     f.close()
