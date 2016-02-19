@@ -67,7 +67,7 @@ algorithms = [
               ]
 
 problems =[
-    hpcc_kmeans(norows=2)
+    hpcc_kmeans(instances=345, features=7, nol=200)
 ]
 
 build_new_pop = False                                       # Whether or not to rebuild the initial population

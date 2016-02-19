@@ -24,7 +24,7 @@ refined_data := RECORD
 END;
 
 raw_data := DATASET('~testing', layout_data, csv(separator(',')));
-SET OF INTEGER raw_centroids := [38];
+SET OF INTEGER raw_centroids := [234];
 raw_centroid := raw_data(id IN raw_centroids);
 
 refined_data remove_id(layout_data l) := TRANSFORM
@@ -43,6 +43,6 @@ centroid := PROJECT(raw_centroid, remove_id(LEFT));
 ML.ToField(clean_data, d);
 ML.ToField(centroid, c);
 
-x3 := Kmeans(d,c,11,3);
+x3 := Kmeans(d,c,134,0.3);
 
-OUTPUT(x3);
+OUTPUT(x3.convergence);

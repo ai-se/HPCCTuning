@@ -45,4 +45,4 @@ ML.ToField(centroid, c);
 
 x3 := Kmeans(d, c);
 
-OUTPUT(x3);
+OUTPUT(x3.convergence);

@@ -29,12 +29,12 @@ from os import system
 class hpcc_kmeans(jmoo_problem):
     "hpcc_kmeans"
 
-    def __init__(prob,instances=100, features=20, k=3, nol=30, noc=4, norows=None):
+    def __init__(prob,instances=100, features=20, nol=30, noc=0.3):
         prob.name = "hpcc_kmeans"
         prob.instances = instances
-        prob.decisions = [jmoo_decision("k", 1, int(features**0.5)), jmoo_decision("number_of_loops", 1, nol), jmoo_decision("no_of_centroids", 1, noc)]
+        prob.conv = noc
+        prob.decisions = [jmoo_decision("k", 1, int(features**0.5)), jmoo_decision("number_of_loops", 1, nol)]
         prob.objectives = [jmoo_objective("convergence", True)]
-        prob.no_of_columns = norows
         prob.is_binary = False
 
     def evaluate(prob, input=None):
@@ -45,27 +45,20 @@ class hpcc_kmeans(jmoo_problem):
 
         k = int(input[0])
         t_nol = int(input[1])
-        t_noc = int(input[2])
 
         from modify_ecl_file import modify_file
         from random import randint
-        modify_file([randint(1, prob.instances) for _ in xrange(k)], t_nol, t_noc)
-        # generates centroids
-        if prob.no_of_columns is None:
-            assert ()
-        else:
-            from random import random
+        modify_file([randint(1, prob.instances) for _ in xrange(k)], t_nol, prob.conv)
 
         command = "ecl run /home/vivek/GIT/HPCCTuning/Problems/HPCC/Kmeans/kmeans.ecl -I\"/home/vivek/ecl-ml-master\" --target=thor"
 
-        print command
-
         import subprocess
         output = subprocess.check_output(command, shell=True)
-        print output
-        exit()
-
-        return [objective.value for objective in prob.objectives]
+        result = output.split("\n")[3]
+        import re
+        res = re.search(r"_1>(.*)</Result_1>", result)
+        return_value = int(res.group(1))
+        return return_value
 
     def evalConstraints(prob, input=None):
         return False  # no constraints
