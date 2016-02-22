@@ -52,7 +52,7 @@ from Problems.HPCC.Kmeans.runner import hpcc_kmeans
 # JMOO Experimental Definitions
 algorithms = [
                 # jmoo_GALE2(),
-                # jmoo_GALE(),
+                jmoo_GALE(),
                 jmoo_DE(),
                 # jmoo_MOEAD_TCH(),
                 # jmoo_NSGAIII(),
@@ -74,8 +74,8 @@ build_new_pop = False                                       # Whether or not to 
 
 Configurations = {
     "Universal": {
-        "Repeats" : 3,
-        "Population_Size" : 92,
+        "Repeats" : 1,
+        "Population_Size" : 20,
         "No_of_Generations" : 20
     },
     "NSGAIII": {

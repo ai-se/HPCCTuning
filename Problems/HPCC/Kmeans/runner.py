@@ -58,7 +58,7 @@ class hpcc_kmeans(jmoo_problem):
         import re
         res = re.search(r"_1>(.*)</Result_1>", result)
         return_value = int(res.group(1))
-        return return_value
+        return [return_value]
 
     def evalConstraints(prob, input=None):
         return False  # no constraints

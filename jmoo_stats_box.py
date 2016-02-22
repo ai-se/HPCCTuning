@@ -78,7 +78,7 @@ class jmoo_stats_box:
         statBox.foam = [{} for o in problem.objectives]
         statBox.bests = [100.0 for o in problem.objectives]
         statBox.bests_actuals = [0 for o in problem.objectives]
-        statBox.lives = 3
+        statBox.lives = 5
         statBox.reference_point_for_hypervolume = None
     
     def update(statBox, population, gen, num_new_evals, initial = False, population_size=None, printOption=True):

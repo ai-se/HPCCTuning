@@ -65,7 +65,7 @@ def initialPopulation(problem, n, path=""):
     #preprocessing
     #take first X guys of dataset to get reference point and objective highs and lows
     fitnesses = []
-    for i in range(500):
+    for i in range(30):
         fitnesses.append( problem.evaluate(problem.generateInput()) )
     # Split Columns into Lists
     print "Dataset generated for " + problem.name + " in " + filename + "."
