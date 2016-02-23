@@ -66,9 +66,7 @@ target/
 #Mac
 .DS_Store
 
-#JMOO
-RawData/ExperimentalRecords/
-RawData/PopulationArchives/
+
 
 
 

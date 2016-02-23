@@ -15,7 +15,7 @@ from jmoo_decision import *
 from jmoo_problem import jmoo_problem
 from euclidean_distance import euclidean_distance
 from os import system
-
+from random import sample
 
 # for count in xrange(1, 10):
 #     command = "ecl run kmeans_original.ecl -I\"C:\ecl-ml-master\"  --target=thor --server=192.168.56.101:8010"
@@ -29,9 +29,12 @@ from os import system
 class hpcc_kmeans(jmoo_problem):
     "hpcc_kmeans"
 
-    def __init__(prob,instances=100, features=20, nol=30, noc=0.3):
-        prob.name = "hpcc_kmeans"
+    def __init__(prob,dataset_name, instances=100, features=20, nol=30, noc=0.3,tuning_precent=20):
+        prob.name = "hpcc_kmeans_" + dataset_name
+        prob.features = features
         prob.instances = instances
+        prob.dataset_name = dataset_name
+        prob.tuning_instances = sample(range(1, prob.instances+1), int(prob.instances * tuning_precent/100))
         prob.conv = noc
         prob.decisions = [jmoo_decision("k", 1, int(features**0.5)), jmoo_decision("number_of_loops", 1, nol)]
         prob.objectives = [jmoo_objective("convergence", True)]
@@ -48,11 +51,15 @@ class hpcc_kmeans(jmoo_problem):
 
         from modify_ecl_file import modify_file
         from random import randint
-        modify_file([randint(1, prob.instances) for _ in xrange(k)], t_nol, prob.conv)
+        modify_file(prob.dataset_name, prob.features, [randint(1, prob.instances) for _ in xrange(k)],
+                    t_nol, prob.conv, prob.tuning_instances)
 
+        print "# ",
+        sys.stdout.flush()
         command = "ecl run /home/vivek/GIT/HPCCTuning/Problems/HPCC/Kmeans/kmeans.ecl -I\"/home/vivek/ecl-ml-master\" --target=thor"
 
         import subprocess
+        DEVNULL = open(os.devnull, "wb")
         output = subprocess.check_output(command, shell=True)
         result = output.split("\n")[3]
         import re

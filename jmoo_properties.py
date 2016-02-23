@@ -67,7 +67,11 @@ algorithms = [
               ]
 
 problems =[
-    hpcc_kmeans(instances=345, features=7, nol=200)
+    hpcc_kmeans(dataset_name="testing", instances=345, features=7, nol=200, tuning_precent=20),
+    hpcc_kmeans(dataset_name="nursery.csv", instances=12960, features=8, nol=200, tuning_precent=20),
+    hpcc_kmeans(dataset_name="letter.csv", instances=20000, features=16, nol=200, tuning_precent=20),
+    hpcc_kmeans(dataset_name="poker.csv", instances=1025010, features=11, nol=200, tuning_precent=20)
+
 ]
 
 build_new_pop = False                                       # Whether or not to rebuild the initial population

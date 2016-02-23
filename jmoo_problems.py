@@ -42,7 +42,10 @@ def initialPopulation(problem, n, path=""):
     #generate dataset
     dataset = []
     for run in range(n):
+        print ".",
+        sys.stdout.flush()
         dataset.append(problem.generateInput())
+    print
 
 
     #write the dataset to file
@@ -65,7 +68,7 @@ def initialPopulation(problem, n, path=""):
     #preprocessing
     #take first X guys of dataset to get reference point and objective highs and lows
     fitnesses = []
-    for i in range(30):
+    for i in range(10):
         fitnesses.append( problem.evaluate(problem.generateInput()) )
     # Split Columns into Lists
     print "Dataset generated for " + problem.name + " in " + filename + "."

@@ -23,10 +23,6 @@ refined_data := RECORD
 	DECIMAL g;
 END;
 
-raw_data := DATASET('~testing', layout_data, csv(separator(',')));
-SET OF INTEGER raw_centroids := [3, 45, 2];
-raw_centroid := raw_data(id IN raw_centroids);
-
 refined_data remove_id(layout_data l) := TRANSFORM
 	SELF.a := l.a;
 	SELF.b := l.b;
@@ -37,8 +33,12 @@ refined_data remove_id(layout_data l) := TRANSFORM
 	SELF.g := l.g;
 END;
 
-clean_data := PROJECT(raw_data, remove_id(LEFT));
-centroid := PROJECT(raw_centroid, remove_id(LEFT));
+raw_data := DATASET('~testing', layout_data, csv(separator(',')));
+SET OF INTEGER raw_datapoints := [3,4,2,45,23,34,12,9,10,11];
+SET OF INTEGER raw_centroids := [3, 45, 2];
+
+clean_data := PROJECT(raw_data(id IN raw_datapoints), remove_id(LEFT));
+centroid := PROJECT(raw_data(id IN raw_centroids), remove_id(LEFT));
 
 ML.ToField(clean_data, d);
 ML.ToField(centroid, c);
