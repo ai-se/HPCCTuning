@@ -40,12 +40,8 @@ class Moo(BinaryTree):
   def project(i,rows):
     "Uses the O(2N) Fastmap heuristic."
     w    = one(rows) # any row, selected at random
-    print rows
-    print "w: ", w
     i.west = w.furthest()
-    print "west: ", i.west
     i.east = i.west.furthest()
-    print "east: ", i.east
     i.c    = i.west.distance(i.east)
     for row in rows:
        a    = row.distance(i.west)
