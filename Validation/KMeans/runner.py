@@ -57,23 +57,34 @@ parameters = ["k", "nol"]
 parameters = {}
 
 parameters["testing"] = {}
+parameters["testing"]["DE"] = {}
 parameters["testing"]["DE"]["k"]=1
 parameters["testing"]["DE"]["nol"]=1
+parameters["testing"]["GALE"] = {}
 parameters["testing"]["GALE"]["k"]=2
 parameters["testing"]["GALE"]["nol"]=79
+
 parameters["letter.csv"] = {}
+parameters["testing"]["DE"] = {}
 parameters["letter.csv"]["DE"]["k"]=3
 parameters["letter.csv"]["DE"]["nol"]=117
+parameters["testing"]["GALE"] = {}
 parameters["letter.csv"]["GALE"]["k"]=4
 parameters["letter.csv"]["GALE"]["nol"]=200
+
 parameters["nursery.csv"] = {}
+parameters["nursery.csv"]["DE"] = {}
 parameters["nursery.csv"]["DE"]["k"]=1
 parameters["nursery.csv"]["DE"]["nol"]=196
+parameters["nursery.csv"]["GALE"] = {}
 parameters["nursery.csv"]["GALE"]["k"]=2
 parameters["nursery.csv"]["GALE"]["nol"]=200
+
 parameters["poker.csv"] = {}
+parameters["testing"]["DE"] = {}
 parameters["poker.csv"]["DE"]["k"]=2
 parameters["poker.csv"]["DE"]["nol"]=197
+parameters["poker.csv"]["GALE"] = {}
 parameters["poker.csv"]["GALE"]["k"]=3
 parameters["poker.csv"]["GALE"]["nol"]=71
 

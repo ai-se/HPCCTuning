@@ -1,90 +1,98 @@
 <Experiment>
-<Problem name = 'hpcc_kmeans_testing'>
-<Algorithm name = 'GALE'>
-<Run id = '1'>
-<Summary>
-<NumEvals>230</NumEvals>
-<RunTime>3198.56382012</RunTime>
-<IBD>1.0</IBD>
-<IBS>0.0</IBS>
-<convergence>2</convergence>
-</Summary></Run>
-</Algorithm>
-<Algorithm name = 'DE'>
-<Run id = '1'>
-<Summary>
-<NumEvals>400</NumEvals>
-<RunTime>3585.967731</RunTime>
-<IBD>0.367879809051</IBD>
-<IBS>0.0</IBS>
-<convergence>1</convergence>
-</Summary></Run>
-</Algorithm>
-</Problem>
-<Problem name = 'hpcc_kmeans_nursery.csv'>
-<Algorithm name = 'GALE'>
-<Run id = '1'>
-<Summary>
-<NumEvals>310</NumEvals>
-<RunTime>5960.57250905</RunTime>
-<IBD>2.71828182846</IBD>
-<IBS>0.0</IBS>
-<convergence>18446744073709551615</convergence>
-</Summary></Run>
-</Algorithm>
-<Algorithm name = 'DE'>
-<Run id = '1'>
-<Summary>
-<NumEvals>400</NumEvals>
-<RunTime>7128.14529705</RunTime>
-<IBD>2.71828182846</IBD>
-<IBS>0.0</IBS>
-<convergence>18446744073709551615</convergence>
-</Summary></Run>
-</Algorithm>
-</Problem>
-<Problem name = 'hpcc_kmeans_letter.csv'>
-<Algorithm name = 'GALE'>
-<Run id = '1'>
-<Summary>
-<NumEvals>295</NumEvals>
-<RunTime>6146.35686994</RunTime>
-<IBD>2.71828182846</IBD>
-<IBS>0.0</IBS>
-<convergence>18446744073709551615</convergence>
-</Summary></Run>
-</Algorithm>
-<Algorithm name = 'DE'>
-<Run id = '1'>
-<Summary>
-<NumEvals>400</NumEvals>
-<RunTime>7046.07321215</RunTime>
-<IBD>2.71828182846</IBD>
-<IBS>0.0</IBS>
-<convergence>18446744073709551615</convergence>
-</Summary></Run>
-</Algorithm>
-</Problem>
-<Problem name = 'hpcc_kmeans_poker.csv'>
-<Algorithm name = 'GALE'>
-<Run id = '1'>
-<Summary>
-<NumEvals>302</NumEvals>
-<RunTime>7029.84417701</RunTime>
-<IBD>2.71828182846</IBD>
-<IBS>0.0</IBS>
-<convergence>18446744073709551615</convergence>
-</Summary></Run>
-</Algorithm>
-<Algorithm name = 'DE'>
-<Run id = '1'>
-<Summary>
-<NumEvals>400</NumEvals>
-<RunTime>9273.70104408</RunTime>
-<IBD>2.71828182846</IBD>
-<IBS>0.0</IBS>
-<convergence>18446744073709551615</convergence>
-</Summary></Run>
-</Algorithm>
-</Problem>
+    <Problem name='hpcc_kmeans_testing'>
+        <Algorithm name='GALE'>
+            <Run id='1'>
+                <Summary>
+                    <NumEvals>230</NumEvals>
+                    <RunTime>3198.56382012</RunTime>
+                    <IBD>1.0</IBD>
+                    <IBS>0.0</IBS>
+                    <convergence>2</convergence>
+                </Summary>
+            </Run>
+        </Algorithm>
+        <Algorithm name='DE'>
+            <Run id='1'>
+                <Summary>
+                    <NumEvals>400</NumEvals>
+                    <RunTime>3585.967731</RunTime>
+                    <IBD>0.367879809051</IBD>
+                    <IBS>0.0</IBS>
+                    <convergence>1</convergence>
+                </Summary>
+            </Run>
+        </Algorithm>
+    </Problem>
+    <Problem name='hpcc_kmeans_nursery.csv'>
+        <Algorithm name='GALE'>
+            <Run id='1'>
+                <Summary>
+                    <NumEvals>310</NumEvals>
+                    <RunTime>5960.57250905</RunTime>
+                    <IBD>2.71828182846</IBD>
+                    <IBS>0.0</IBS>
+                    <convergence>18446744073709551615</convergence>
+                </Summary>
+            </Run>
+        </Algorithm>
+        <Algorithm name='DE'>
+            <Run id='1'>
+                <Summary>
+                    <NumEvals>400</NumEvals>
+                    <RunTime>7128.14529705</RunTime>
+                    <IBD>2.71828182846</IBD>
+                    <IBS>0.0</IBS>
+                    <convergence>18446744073709551615</convergence>
+                </Summary>
+            </Run>
+        </Algorithm>
+    </Problem>
+    <Problem name='hpcc_kmeans_letter.csv'>
+        <Algorithm name='GALE'>
+            <Run id='1'>
+                <Summary>
+                    <NumEvals>295</NumEvals>
+                    <RunTime>6146.35686994</RunTime>
+                    <IBD>2.71828182846</IBD>
+                    <IBS>0.0</IBS>
+                    <convergence>18446744073709551615</convergence>
+                </Summary>
+            </Run>
+        </Algorithm>
+        <Algorithm name='DE'>
+            <Run id='1'>
+                <Summary>
+                    <NumEvals>400</NumEvals>
+                    <RunTime>7046.07321215</RunTime>
+                    <IBD>2.71828182846</IBD>
+                    <IBS>0.0</IBS>
+                    <convergence>18446744073709551615</convergence>
+                </Summary>
+            </Run>
+        </Algorithm>
+    </Problem>
+    <Problem name='hpcc_kmeans_poker.csv'>
+        <Algorithm name='GALE'>
+            <Run id='1'>
+                <Summary>
+                    <NumEvals>302</NumEvals>
+                    <RunTime>7029.84417701</RunTime>
+                    <IBD>2.71828182846</IBD>
+                    <IBS>0.0</IBS>
+                    <convergence>18446744073709551615</convergence>
+                </Summary>
+            </Run>
+        </Algorithm>
+        <Algorithm name='DE'>
+            <Run id='1'>
+                <Summary>
+                    <NumEvals>400</NumEvals>
+                    <RunTime>9273.70104408</RunTime>
+                    <IBD>2.71828182846</IBD>
+                    <IBS>0.0</IBS>
+                    <convergence>18446744073709551615</convergence>
+                </Summary>
+            </Run>
+        </Algorithm>
+    </Problem>
 </Experiment>
