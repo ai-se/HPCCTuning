@@ -96,7 +96,7 @@ for dataset in datasets:
         modify_file(dataset, k, nol,  no_instances=345, no_features=7)
          print "# ",
         sys.stdout.flush()
-        command = "ecl run /home/vivek/GIT/HPCCTuning/Problems/HPCC/Kmeans/kmeans.ecl -I\"/home/vivek/ecl-ml-master\" --target=thor"
+        command = "ecl run /home/vnair2/GIT/HPCCTuning/Problems/HPCC/Kmeans/kmeans.ecl -I\"/home/vnair2/ecl-ml-master\" --target=thor"
 
         import subprocess
         DEVNULL = open(os.devnull, "wb")
