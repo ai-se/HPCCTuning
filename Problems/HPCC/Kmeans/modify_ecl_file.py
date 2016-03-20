@@ -2,8 +2,8 @@ def modify_file(dataset_name, no_features, centroids, number_of_loops, convergen
     from os import system
     system("rm -f kmeans.ecl")
 
-    modified_file_name = "~/GIT/HPCCTuning/Problems/HPCC/Kmeans/kmeans.ecl"
-    original_file_name = "~/GIT/HPCCTuning/Problems/HPCC/Kmeans/kmeans_original.ecl"
+    modified_file_name = "/home/vnair2/GIT/HPCCTuning/Problems/HPCC/Kmeans/kmeans.ecl"
+    original_file_name = "/home/vnair2/GIT/HPCCTuning/Problems/HPCC/Kmeans/kmeans_original.ecl"
     content = open(original_file_name, "r").readlines()
 
 
