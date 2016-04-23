@@ -6,7 +6,7 @@ def modify_file(dataset_name, k, number_of_loops, no_features, no_instances):
 
     centroids = [randint(1, no_instances) for _ in xrange(k)]
     modified_file_name = "/Users/viveknair/GIT/HPCCTuning/Validation/KMeans/kmeans.ecl"
-    original_file_name = "/Users/viveknair/GIT/HPCCTuning/Validation/KMeans/kmeans_original.ecl"
+    original_file_name = "/Users/viveknair/GIT/HPCCTuning/Validation/KMeans/rf_original.ecl"
     content = open(original_file_name, "r").readlines()
 
 
