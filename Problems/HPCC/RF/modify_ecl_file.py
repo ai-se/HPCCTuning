@@ -2,13 +2,13 @@ def modify_file(no_trees, no_features, purity, depth, gini_split):
     from os import system
     system("rm -f rf.ecl")
 
-    # modified_file_name = "/home/vnair2/GIT/HPCCTuning/Problems/HPCC/Kmeans/rf.ecl"
-    modified_file_name = "rf.ecl"
-    # original_file_name = "/home/vnair2/GIT/HPCCTuning/Problems/HPCC/Kmeans/rf_original.ecl"
-    original_file_name = "rf_original.ecl"
+    modified_file_name = "/home/vnair2/GIT/HPCCTuning/Problems/HPCC/Kmeans/rf.ecl"
+    # modified_file_name = "rf.ecl"
+    original_file_name = "/home/vnair2/GIT/HPCCTuning/Problems/HPCC/Kmeans/rf_original.ecl"
+    # original_file_name = "rf_original.ecl"
     content = open(original_file_name, "r").readlines()
 
-    content[47] = "learner := Classify.RandomForest(" + str(no_trees) + "," + str(no_features) + "," + str(purity) + "," + str(depth) + "," + gini_split + ");\n"
+    content[26] = "learner := Classify.RandomForest(" + str(no_trees) + "," + str(no_features) + "," + str(purity) + "," + str(depth) + "," + gini_split + ");\n"
     f = open(modified_file_name, "w")
     f.write("".join(content))
     f.close()

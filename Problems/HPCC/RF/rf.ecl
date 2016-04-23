@@ -1,59 +1,36 @@
+//RandomForest.ecl
 IMPORT * FROM ML;
 IMPORT ML.Tests.Explanatory as TE;
 
-//Tiny dataset for tests
-weatherRecord := RECORD
-	Types.t_RecordID id;
-	Types.t_FieldNumber outlook;
-	Types.t_FieldNumber temperature;
-	Types.t_FieldNumber humidity;
-	Types.t_FieldNumber windy;
-	Types.t_FieldNumber play;
-END;
-weather_Data := DATASET([
-{1,0,0,1,0,0},
-{2,0,0,1,1,0},
-{3,1,0,1,0,1},
-{4,2,1,1,0,1},
-{5,2,2,0,0,1},
-{6,2,2,0,1,0},
-{7,1,2,0,1,1},
-{8,0,1,1,0,0},
-{9,0,2,0,0,1},
-{10,2,1,0,0,1},
-{11,0,1,0,1,1},
-{12,1,1,1,1,1},
-{13,1,0,0,0,1},
-{14,2,1,1,1,0}],
-weatherRecord);
-OUTPUT(weather_Data, NAMED('weather_Data'));
-indep_Data:= TABLE(weather_Data,{id, outlook, temperature, humidity, windy});
-dep_Data:= TABLE(weather_Data,{id, play});
+//Medium Large dataset for tests//
+indep_data:= TABLE(TE.AdultDS.Train_Data,{id, Age, WorkClass, education, education_num, marital_status, occupation, relationship, race, sex, capital_gain, capital_loss, hours_per_week, native_country});
+dep_data:= TABLE(TE.AdultDS.Train_Data,{id, Outcome});
 
-ToField(indep_data, pr_indep);
-indepData := ML.Discretize.ByRounding(pr_indep);
-ToField(dep_data, pr_dep);
-depData := ML.Discretize.ByRounding(pr_dep);
+//train Data
+train_indep_data := indep_data(id<16280);
+train_dep_data := dep_data(id<16280);
 
-/* 
-// Wont work with the largest dataset, delete " , ALL"
-// As well as further commented lines will ", ALL"
+//tune Data
+tune_indep_data := indep_data(id>16280);
+tune_dep_data := dep_data(id>16280);
 
-// Using a small dataset to facilitate understanding of algorithm
-OUTPUT(indepData, NAMED('indepData'), ALL);
-OUTPUT(depData, NAMED('depData'), ALL);
-*/
+ToField(train_indep_data, train_pr_indep);
+trainIndepData := ML.Discretize.ByRounding(train_pr_indep);
+ToField(train_dep_data, train_pr_dep);
+trainDepData := ML.Discretize.ByRounding(train_pr_dep);
 
-// Generating a random forest of 100 trees selecting 7 features for splits using impurity:=1.0 and max depth:= 100.
+ToField(tune_indep_data, tune_pr_indep);
+tuneIndepData := ML.Discretize.ByRounding(tune_pr_indep);
+ToField(tune_dep_data, tune_pr_dep);
+tuneDepData := ML.Discretize.ByRounding(tune_pr_dep);
+
 learner := Classify.RandomForest(200,5,1,50,True);
-result := learner.LearnD(IndepData, DepData); // model to use when classifying
+result := learner.LearnD(trainIndepData, trainDepData); // model to use when classifying
 model:= learner.model(result);  // transforming model to a easier way to read it
 
-//Class distribution for each Instance
-ClassDist:= learner.ClassProbDistribD(IndepData, result);
-class:= learner.classifyD(IndepData, result); // classifying
+class:= learner.classifyD(tuneIndepData, result); // classifying
 
 //Measuring Performance of Classifier
-performance:= Classify.Compare(depData, class);
+performance:= Classify.Compare(tuneDepData, class);
 OUTPUT(performance.Accuracy, NAMED('Accuracy'));
 
