@@ -48,12 +48,13 @@ from Problems.Constrained.Type1 import c1_dtlz1,c1_dtlz3
 from Problems.Constrained.Type2 import c2_dtlz2, c2_convex_dtlz2
 from Problems.Constrained.Type3 import c3_dtlz1, c3_dtlz4
 from Problems.HPCC.Kmeans.runner import hpcc_kmeans
+from Problems.HPCC.RF.runner import hpcc_random_forest
 
 # JMOO Experimental Definitions
 algorithms = [
                 # jmoo_GALE2(),
                 jmoo_GALE(),
-                jmoo_DE(),
+                # jmoo_DE(),
                 # jmoo_MOEAD_TCH(),
                 # jmoo_NSGAIII(),
                 # jmoo_GALE_no_mutation(),
@@ -68,9 +69,10 @@ algorithms = [
 
 problems =[
     # hpcc_kmeans(dataset_name="testing", instances=345, features=7, nol=200, tuning_precent=20),
-    hpcc_kmeans(dataset_name="nursery.csv", instances=12960, features=8, nol=200, tuning_precent=20),
+    # hpcc_kmeans(dataset_name="nursery.csv", instances=12960, features=8, nol=200, tuning_precent=20),
     # hpcc_kmeans(dataset_name="letter.csv", instances=20000, features=16, nol=200, tuning_precent=20),
     # hpcc_kmeans(dataset_name="poker.csv", instances=1025010, features=11, nol=200, tuning_precent=20)
+    hpcc_random_forest(dataset_name="dconnect4", features=42)
 
 ]
 
@@ -80,7 +82,7 @@ Configurations = {
     "Universal": {
         "Repeats" : 1,
         "Population_Size" : 20,
-        "No_of_Generations" : 20
+        "No_of_Generations" : 10
     },
     "NSGAIII": {
         "SBX_Probability": 1,

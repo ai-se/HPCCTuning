@@ -1,36 +1,38 @@
 //RandomForest.ecl
-IMPORT * FROM ML;
+IMPORT ML;
 IMPORT ML.Tests.Explanatory as TE;
+IMPORT TestingSuite.Utils AS Utils;
 
 //Medium Large dataset for tests//
-indep_data:= TABLE(TE.AdultDS.Train_Data,{id, Age, WorkClass, education, education_num, marital_status, occupation, relationship, race, sex, capital_gain, capital_loss, hours_per_week, native_country});
-dep_data:= TABLE(TE.AdultDS.Train_Data,{id, Outcome});
+raw_train_data := TE.dhiv.Training;
+raw_test_data := TE.dhiv.Tuning;
 
-//train Data
-train_indep_data := indep_data(id<16280);
-train_dep_data := dep_data(id<16280);
+// Splitting data into train and test
+Utils.ToTraining(raw_train_data, train_data_independent);
+Utils.ToTesting(raw_train_data, train_data_dependent);
+Utils.ToTraining(raw_test_data, test_data_independent);
+Utils.ToTesting(raw_test_data, test_data_dependent);
 
-//tune Data
-tune_indep_data := indep_data(id>16280);
-tune_dep_data := dep_data(id>16280);
+ML.ToField(train_data_independent, pr_indep);
+trainIndepData := ML.Discretize.ByRounding(pr_indep);
+ML.ToField(train_data_dependent, pr_dep);
+trainDepData := ML.Discretize.ByRounding(pr_dep);
 
-ToField(train_indep_data, train_pr_indep);
-trainIndepData := ML.Discretize.ByRounding(train_pr_indep);
-ToField(train_dep_data, train_pr_dep);
-trainDepData := ML.Discretize.ByRounding(train_pr_dep);
+ML.ToField(test_data_independent, tr_indep);
+testIndepData := ML.Discretize.ByRounding(tr_indep);
+ML.ToField(test_data_dependent, tr_dep);
+testDepData := ML.Discretize.ByRounding(tr_dep);
 
-ToField(tune_indep_data, tune_pr_indep);
-tuneIndepData := ML.Discretize.ByRounding(tune_pr_indep);
-ToField(tune_dep_data, tune_pr_dep);
-tuneDepData := ML.Discretize.ByRounding(tune_pr_dep);
-
-learner := Classify.RandomForest(100, 7, 1.0, 100, FALSE);  // GiniSplit = FALSE uses Info Gain Ratio as split criteria
+learner := ML.Classify.RandomForest(200,5,0.6,50,True);
 result := learner.LearnD(trainIndepData, trainDepData); // model to use when classifying
 model:= learner.model(result);  // transforming model to a easier way to read it
 
-class:= learner.classifyD(tuneIndepData, result); // classifying
+class:= learner.classifyD(testIndepData, result); // classifying
 
 //Measuring Performance of Classifier
-performance:= Classify.Compare(tuneDepData, class);
-OUTPUT(performance.Accuracy, NAMED('Accuracy'));
+performance:= ML.Classify.Compare(testDepData, class);
+
+OUTPUT(performance.Accuracy, Named('accuracy'));
+OUTPUT(performance.MacroAveragePrecision, Named('map'));
+OUTPUT(performance.MacroAverageRecall, Named('mar'));
 

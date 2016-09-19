@@ -104,6 +104,7 @@ class jmoo_stats_box:
         objectives = [individual.fitness.fitness for individual in shorten_population]
         # Split Columns into Lists
         objective_columns = [[objective[i] for objective in objectives] for i, obj in enumerate(statBox.problem.objectives)]
+
         # Calculate Medians of objective scores
         objective_medians = [median(fitCol) for fitCol in objective_columns]
         # Calculate IQR of objective scores
@@ -198,27 +199,20 @@ def changeFromOld(new, old, lismore, low, up):
         if ourlismore: return 0
         else: return 1
     else: return 100.0*x**(1 if ourlismore else -1)
+
+
 def median(list):
+    if len(list) == 0: return -1
     return getPercentile(list, 50)
 
 def spread(list):
+    if len(list) == 0: return -1
     return getPercentile(list, 75) - getPercentile(list, 25)
 
+
 def getPercentile(list, percentile):
-        if len(list) == 0: return 0
-        #sort the list
-        list.sort()
-        
-        k = (len(list) - 1) * (percentile/100.0)
-        f = math.floor(k)
-        c = math.ceil(k)
-        if f == c:
-            val = list[int(k)]
-        else:
-            d0 = list[int(f)] * (c-k)
-            d1 = list[int(c)] * (k-f)
-            val = d0+d1
-        return val
+        import numpy as np
+        return np.percentile(list, percentile)
 
 def normalize(x, min, max):
     tmp = float((x - min)) / \

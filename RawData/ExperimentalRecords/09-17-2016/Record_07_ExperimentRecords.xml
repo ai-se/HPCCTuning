@@ -1,0 +1,14 @@
+<Experiment>
+<Problem name = 'hpcc_rf_dwhiterook'>
+<Algorithm name = 'GALE'>
+<Run id = '1'>
+<Summary>
+<NumEvals>40</NumEvals>
+<RunTime>7514.68400002</RunTime>
+<IBD>0.397732674036</IBD>
+<IBS>0.0298293703837</IBS>
+<accuracy>0.428800570308</accuracy>
+</Summary></Run>
+</Algorithm>
+</Problem>
+</Experiment>

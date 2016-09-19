@@ -1,0 +1,14 @@
+<Experiment>
+<Problem name = 'hpcc_rf_dadult'>
+<Algorithm name = 'GALE'>
+<Run id = '1'>
+<Summary>
+<NumEvals>40</NumEvals>
+<RunTime>22816.0279999</RunTime>
+<IBD>0.682789363147</IBD>
+<IBS>0.314893245721</IBS>
+<accuracy>0.175555328079</accuracy>
+</Summary></Run>
+</Algorithm>
+</Problem>
+</Experiment>

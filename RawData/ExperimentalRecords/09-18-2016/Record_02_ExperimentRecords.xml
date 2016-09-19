@@ -1,0 +1,14 @@
+<Experiment>
+<Problem name = 'hpcc_rf_dconnect4'>
+<Algorithm name = 'GALE'>
+<Run id = '1'>
+<Summary>
+<NumEvals>51</NumEvals>
+<RunTime>30680.6129999</RunTime>
+<IBD>0.663115957131</IBD>
+<IBS>0.546395092136</IBS>
+<accuracy>0.341696269982</accuracy>
+</Summary></Run>
+</Algorithm>
+</Problem>
+</Experiment>

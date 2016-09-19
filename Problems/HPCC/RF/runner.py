@@ -13,6 +13,7 @@ if parentdir not in sys.path:
 from jmoo_objective import *
 from jmoo_decision import *
 from jmoo_problem import jmoo_problem
+from random import random
 from euclidean_distance import euclidean_distance
 from os import system
 from random import sample
@@ -26,18 +27,18 @@ from random import sample
 #     raw_input()
 
 
-class hpcc_kmeans(jmoo_problem):
+class hpcc_random_forest(jmoo_problem):
     "hpcc_kmeans"
 
-    def __init__(prob,dataset_name, instances=100, features=20, nol=30, noc=0.3,tuning_precent=20):
-        prob.name = "hpcc_kmeans_" + dataset_name
-        prob.features = features
-        prob.instances = instances
+    def __init__(prob, dataset_name, features=20):
+        prob.name = "hpcc_rf_" + dataset_name
         prob.dataset_name = dataset_name
-        prob.tuning_instances = sample(range(1, prob.instances+1), int(prob.instances * tuning_precent/100))
-        prob.conv = noc
-        prob.decisions = [jmoo_decision("k", 1, int(features**0.5)), jmoo_decision("number_of_loops", 1, nol)]
-        prob.objectives = [jmoo_objective("convergence", True)]
+        prob.decisions = [jmoo_decision("no_trees", 80, 120),
+                          jmoo_decision("no_features", 4, features),
+                          jmoo_decision("purity", 0.6, 1),
+                          jmoo_decision("depth", 80, 120)
+                          ]
+        prob.objectives = [jmoo_objective("accuracy", True)]
         prob.is_binary = False
 
     def evaluate(prob, input=None):
@@ -46,26 +47,28 @@ class hpcc_kmeans(jmoo_problem):
                 decision.value = input[i]
         input = [decision.value for decision in prob.decisions]
 
-        k = int(input[0])
-        t_nol = int(input[1])
+        no_trees = int(input[0])
+        no_features = int(input[1])
+        purity = input[2]
+        depth = int(input[3])
 
         from modify_ecl_file import modify_file
         from random import randint
-        modify_file(prob.dataset_name, prob.features, [randint(1, prob.instances) for _ in xrange(k)],
-                    t_nol, prob.conv, prob.tuning_instances)
+        modify_file(prob.dataset_name, no_trees, no_features, purity, depth)
 
         print "# ",
         sys.stdout.flush()
-        command = "ecl run /home/vnair2/GIT/HPCCTuning/Problems/HPCC/Kmeans/kmeans.ecl -I\"/home/vnair2/GIT/ecl-ml-master/\" --target=thor"
+        command = "ecl run c:\\GIT\\HPCCTuning\\Problems\\HPCC\\RF\\rf.ecl -I\"c:\\GIT\\HPCCTuning\\ecl-ml\" --target=thor --server=10.239.227.6 --port=8010"
 
         import subprocess
         DEVNULL = open(os.devnull, "wb")
         output = subprocess.check_output(command, shell=True)
         result = output.split("\n")[3]
         import re
-        res = re.search(r"_1>(.*)</Result_1>", result)
-        return_value = int(res.group(1))
-        return [return_value]
+        res = re.search(r"accuracy>(.*)</accuracy>", result)
+        return_value = res.group(1)
+
+        return [1-float(return_value)] # Since max value of accuracy = 1
 
     def evalConstraints(prob, input=None):
         return False  # no constraints

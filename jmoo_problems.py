@@ -68,11 +68,10 @@ def initialPopulation(problem, n, path=""):
     #preprocessing
     #take first X guys of dataset to get reference point and objective highs and lows
     fitnesses = []
-    for i in range(10):
-        fitnesses.append( problem.evaluate(problem.generateInput()) )
+    for i in range(4):
+        fitnesses.append( problem.evaluate(problem.generateInput()))
     # Split Columns into Lists
     print "Dataset generated for " + problem.name + " in " + filename + "."
-
     fitnessColumns = [[fit[i] for fit in fitnesses] for i,obj in enumerate(problem.objectives)]
 
     # Calculate Medians and Spreads
