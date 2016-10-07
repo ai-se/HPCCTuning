@@ -1,7 +1,7 @@
 ﻿//RandomForest.ecl
 IMPORT * FROM ML;
 IMPORT ML.Tests.Explanatory as TE;
-/* 
+
 //Tiny dataset for tests
 weatherRecord := RECORD
 	Types.t_RecordID id;
@@ -30,16 +30,16 @@ weatherRecord);
 OUTPUT(weather_Data, NAMED('weather_Data'));
 indep_Data:= TABLE(weather_Data,{id, outlook, temperature, humidity, windy});
 dep_Data:= TABLE(weather_Data,{id, play});
-
+/* 
 //Medium dataset for tests
 indep_data:= TABLE(TE.MonkDS.Train_Data,{id, a1, a2, a3, a4, a5, a6});
 dep_data:= TABLE(TE.MonkDS.Train_Data,{id, class});
-*/
+
 
 //Medium Large dataset for tests
 indep_data:= TABLE(TE.AdultDS.Train_Data,{id, Age, WorkClass, education, education_num, marital_status, occupation, relationship, race, sex, capital_gain, capital_loss, hours_per_week, native_country});
 dep_data:= TABLE(TE.AdultDS.Train_Data,{id, Outcome});
-
+*/
 ToField(indep_data, pr_indep);
 indepData := ML.Discretize.ByRounding(pr_indep);
 ToField(dep_data, pr_dep);
@@ -58,7 +58,7 @@ OUTPUT(depData, NAMED('depData'), ALL);
 //learner := Classify.RandomForest(100, 7, 1.0, 100);         // GiniSplit = TRUE (default) uses Gini Impurity as split criteria
 learner := Classify.RandomForest(100, 7, 1.0, 100, FALSE);  // GiniSplit = FALSE uses Info Gain Ratio as split criteria
 result := learner.LearnD(IndepData, DepData); // model to use when classifying
-// OUTPUT(result,NAMED('learnd_output'), ALL); // group_id represent number of tree
+OUTPUT(result,NAMED('learnd_output'), ALL); // group_id represent number of tree
 model:= learner.model(result);  // transforming model to a easier way to read it
 // Showing only the first 100 records ("result limit" is 100 by default)
 OUTPUT(SORT(model, group_id, node_id, value), NAMED('model_ouput') );

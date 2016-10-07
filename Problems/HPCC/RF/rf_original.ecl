@@ -1,4 +1,4 @@
-//RandomForest.ecl
+#option (‘globalAutoHoist’, false);
 IMPORT ML;
 IMPORT ML.Tests.Explanatory as TE;
 IMPORT TestingSuite.Utils AS Utils;

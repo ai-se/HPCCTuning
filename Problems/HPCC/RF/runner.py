@@ -36,7 +36,7 @@ class hpcc_random_forest(jmoo_problem):
         prob.decisions = [jmoo_decision("no_trees", 80, 120),
                           jmoo_decision("no_features", 4, features),
                           jmoo_decision("purity", 0.6, 1),
-                          jmoo_decision("depth", 80, 120)
+                          jmoo_decision("depth", 80, 120 )
                           ]
         prob.objectives = [jmoo_objective("accuracy", True)]
         prob.is_binary = False
@@ -58,7 +58,7 @@ class hpcc_random_forest(jmoo_problem):
 
         print "# ",
         sys.stdout.flush()
-        command = "ecl run c:\\GIT\\HPCCTuning\\Problems\\HPCC\\RF\\rf.ecl -I\"c:\\GIT\\HPCCTuning\\ecl-ml\" --target=thor --server=10.239.227.6 --port=8010"
+        command = "ecl run c:\\GIT\\HPCCTuning\\Problems\\HPCC\\RF\\rf.ecl -I\"c:\\GIT\\HPCCTuning\\ecl-ml\" --target=hthor --server=10.239.227.6 --port=8010"
 
         import subprocess
         DEVNULL = open(os.devnull, "wb")

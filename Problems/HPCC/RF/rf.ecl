@@ -1,11 +1,11 @@
-//RandomForest.ecl
+#option('outputLimit',100);
 IMPORT ML;
 IMPORT ML.Tests.Explanatory as TE;
 IMPORT TestingSuite.Utils AS Utils;
 
 //Medium Large dataset for tests//
-raw_train_data := TE.dconnect4.Training;
-raw_test_data := TE.dconnect4.Tuning;
+raw_train_data := TE.dadult.Training;
+raw_test_data := TE.dadult.Tuning;
 
 // Splitting data into train and test
 Utils.ToTraining(raw_train_data, train_data_independent);
@@ -23,7 +23,7 @@ testIndepData := ML.Discretize.ByRounding(tr_indep);
 ML.ToField(test_data_dependent, tr_dep);
 testDepData := ML.Discretize.ByRounding(tr_dep);
 
-learner := ML.Classify.RandomForest(99,32,0.906904726879,93, False);
+learner := ML.Classify.RandomForest(119,4,0.746374400288,80, False);
 result := learner.LearnD(trainIndepData, trainDepData); // model to use when classifying
 model:= learner.model(result);  // transforming model to a easier way to read it
 

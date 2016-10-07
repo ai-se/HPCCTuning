@@ -72,6 +72,9 @@ problems =[
     # hpcc_kmeans(dataset_name="nursery.csv", instances=12960, features=8, nol=200, tuning_precent=20),
     # hpcc_kmeans(dataset_name="letter.csv", instances=20000, features=16, nol=200, tuning_precent=20),
     # hpcc_kmeans(dataset_name="poker.csv", instances=1025010, features=11, nol=200, tuning_precent=20)
+    hpcc_random_forest(dataset_name="dhiv", features=8),
+    hpcc_random_forest(dataset_name="dwhiterook", features=6),
+    hpcc_random_forest(dataset_name="dadult", features=14),
     hpcc_random_forest(dataset_name="dconnect4", features=42)
 
 ]
@@ -80,7 +83,7 @@ build_new_pop = False                                       # Whether or not to 
 
 Configurations = {
     "Universal": {
-        "Repeats" : 1,
+        "Repeats" : 20,
         "Population_Size" : 20,
         "No_of_Generations" : 10
     },

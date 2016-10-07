@@ -1,7 +1,7 @@
 ﻿IMPORT * FROM ML;
 IMPORT ML.Mat;
 IMPORT ML.Tests.Explanatory as TE;
-/*
+
 //This is the tennis-weather dataset transformed to discrete number values.
 weatherRecord := RECORD
 	Types.t_RecordID id;
@@ -32,12 +32,12 @@ indep_data:= TABLE(weather_Data,{id, outlook, temperature, humidity, windy});
 dep_data:= TABLE(weather_Data,{id, play});
 indep_test:= indep_data
 dep_test:= dep_data
-*/
+
 //You can use the tennis-weather dataset (above) instead and You will find same models for both decision tree clasiffiers.
 //Using MONKS dataset you will find different results between the classifiers.
 //TE.MonkDS.Train_Data;
-indep_data:= TABLE(TE.MonkDS.Train_Data,{id, a1, a2, a3, a4, a5, a6});
-dep_data:= TABLE(TE.MonkDS.Train_Data,{id, class});
+// indep_data:= TABLE(TE.MonkDS.Train_Data,{id, a1, a2, a3, a4, a5, a6});
+// dep_data:= TABLE(TE.MonkDS.Train_Data,{id, class});
 ToField(indep_data, pr_indep);
 indep := ML.Discretize.ByRounding(pr_indep);
 ToField(dep_data, pr_dep);
